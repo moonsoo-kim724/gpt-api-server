@@ -1,4 +1,4 @@
-// Next.js API Route for GPT Actions
+// /api/generate-content.js - GPT Actions용 API 엔드포인트
 export default async function handler(req, res) {
   // CORS 헤더 설정
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,9 +19,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    // API 키 검증
+    // ✨ CLIENT_KEY 사용 (기존 환경변수)
     const apiKey = req.headers['x-api-key'];
-    const validApiKey = process.env.CUSTOM_API_KEY;
+    const validApiKey = process.env.CLIENT_KEY;  // 이 부분이 핵심!
     
     if (!validApiKey || apiKey !== validApiKey) {
       return res.status(401).json({
